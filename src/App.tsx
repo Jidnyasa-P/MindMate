@@ -8,11 +8,15 @@ import CommunityHub from './components/pages/CommunityHub';
 import AppointmentsPage from './components/pages/AppointmentsPage';
 import AssessmentsPage from './components/pages/AssessmentsPage';
 import AdminAnalytics from './components/pages/AdminAnalytics';
+import Profile from './components/pages/Profile';
+import Settings from './components/pages/Settings';
 import Navbar from './components/shared/Navbar';
 import Footer from './components/shared/Footer';
 import ChatBot from './components/shared/ChatBot';
 import DailyQuote from './components/shared/DailyQuote';
 import { Toaster } from './components/ui/sonner';
+
+
 
 // Auth Context
 type User = {
@@ -125,6 +129,10 @@ export default function App() {
         return <AssessmentsPage />;
       case 'analytics':
         return user.role === 'admin' ? <AdminAnalytics /> : <Dashboard />;
+      case 'profile':
+  return <Profile />;
+case 'settings':
+  return <Settings />;
       default:
         return <Dashboard />;
     }

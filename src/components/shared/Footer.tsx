@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="mb-4">About MindMate</h3>
+            <h3 className="mb-4">About MannoDhara</h3>
             <p className="text-sm text-muted-foreground mb-4">
               A comprehensive mental health support platform designed specifically for university students, providing accessible and confidential resources.
             </p>
@@ -79,11 +79,11 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start space-x-3">
                 <Mail className="w-4 h-4 mt-0.5 text-muted-foreground flex-shrink-0" />
-                <span className="text-muted-foreground">support@mindcare.edu</span>
+                <span className="text-muted-foreground">support@mannodhara.edu</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-4 h-4 mt-0.5 text-muted-foreground flex-shrink-0" />
-                <span className="text-muted-foreground">1-800-MINDCARE</span>
+                <span className="text-muted-foreground">1-800-MannoDhara</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-muted-foreground flex-shrink-0" />
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} MindMate. All rights reserved. | University Mental Health Initiative</p>
+          <p>© {currentYear} MannoDhara. All rights reserved. | University Mental Health Initiative</p>
           <p className="mt-2">
             <span className="text-destructive">Crisis Hotline:</span> Available 24/7 at 988
           </p>

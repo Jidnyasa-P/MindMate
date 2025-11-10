@@ -4,12 +4,14 @@ import { Button } from '../ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import logo from '../../assets/mannodhara_logo.jpg';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { currentPage, setCurrentPage, theme, toggleTheme, language, setLanguage } = useAppState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWellnessDropdownOpen, setIsWellnessDropdownOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // NEW: user dropdown state
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -49,13 +51,17 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Sparkles className="h-8 w-8 text-teal-500" />
-            <span className="ml-2 text-xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
-              MindMate
-            </span>
-          </div>
+         {/* Logo */}
+<div className="flex-shrink-0 flex items-center space-x-2">
+  <img
+    src={logo}
+    alt="MannoDhara Logo"
+    className="h-14 w-14 object-contain rounded-full"
+  />
+  <span className="text-xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
+    MannoDhara
+  </span>
+</div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
@@ -156,20 +162,69 @@ export default function Navbar() {
               {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </Button>
 
-            {/* User Menu */}
-            <div className="flex items-center space-x-2 border-l pl-3 ml-3">
-              <div className="text-right hidden lg:block">
-                <p className="text-sm font-medium">{user?.name}</p>
-                <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
-              </div>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" onClick={logout}>
-                <LogOut className="h-5 w-5" />
-              </Button>
-            </div>
-          </div>
+          {/* User Menu with Dropdown */}
+{/* NOTE: parent wrapper has overflow-visible to prevent clipping */}
+<div className="relative flex items-center space-x-2 border-l pl-3 ml-3 overflow-visible">
+  <div className="text-right hidden lg:block">
+    <p className="text-sm font-medium">{user?.name}</p>
+    <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
+  </div>
+
+  {/* Dropdown Toggle */}
+  <Button
+    variant="ghost"
+    size="icon"
+    onClick={() => setIsUserMenuOpen(prev => !prev)}
+    className="flex items-center space-x-1"
+    aria-haspopup="true"
+    aria-expanded={isUserMenuOpen}
+  >
+    <User className="h-5 w-5" />
+    <ChevronDown
+      className={`h-4 w-4 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`}
+    />
+  </Button>
+
+  {/* Dropdown Menu */}
+  <AnimatePresence>
+    {isUserMenuOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -6 }}
+        transition={{ duration: 0.12 }}
+        // Use top-full + mt-2 so dropdown is positioned just below the toggle
+        className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50"
+        role="menu"
+      >
+        <button
+          onClick={() => { handleNavigation('profile'); setIsUserMenuOpen(false); }}
+          className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          role="menuitem"
+        >
+          Profile
+        </button>
+
+        <button
+          onClick={() => { handleNavigation('settings'); setIsUserMenuOpen(false); }}
+          className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          role="menuitem"
+        >
+          Settings
+        </button>
+
+        <button
+          onClick={() => { logout(); setIsUserMenuOpen(false); }}
+          className="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30"
+          role="menuitem"
+        >
+          Logout
+        </button>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</div>
+</div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">

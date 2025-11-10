@@ -13,8 +13,8 @@ type Message = {
 };
 
 const predefinedResponses: Record<string, string> = {
-  hello: "Hello! I'm here to help you navigate MindMate. How can I assist you today?",
-  hi: "Hi there! Welcome to MindMate. I'm your virtual assistant. How can I help you?",
+  hello: "Hello! I'm here to help you navigate MannoDhara. How can I assist you today?",
+  hi: "Hi there! Welcome to MannoDhara. I'm your virtual assistant. How can I help you?",
   help: "I can help you with:\n• Finding resources\n• Booking appointments with counselors\n• Taking self-assessments (PHQ-9, GAD-7, Stress tests)\n• Navigating the platform\n• Crisis support information\n• Journaling and mood tracking\n• Joining community discussions",
   appointment: "To book an appointment:\n1. Go to the Appointments page\n2. Browse counselors by specialization and area\n3. Select a counselor\n4. Choose your preferred date and time\n5. Enter your reason for the appointment\n6. Confirm booking\n\nYou'll receive a confirmation notification!",
   counselor: "Our counselors specialize in various areas including anxiety, depression, stress management, and academic pressure. You can filter counselors by area and specialization to find the best match for you.",
@@ -24,7 +24,7 @@ const predefinedResponses: Record<string, string> = {
   journal: "The Journal page lets you:\n• Create daily entries with titles and content\n• Track your mood (happy, sad, anxious, calm, neutral)\n• Add tags to categorize entries\n• View mood trends on a chart\n• Switch between list and calendar views\n\nIt's a great way to reflect on your mental health journey!",
   habits: "Build healthy habits with our Habit Tracker:\n• Create custom habits with icons\n• Set daily/weekly targets\n• Track progress with visual rings\n• Monitor your streaks\n• Get motivational messages\n\nSmall steps lead to big changes!",
   community: "Join our Community Hub to:\n• Post in the peer support forum\n• Comment and like posts\n• Register for webinars and workshops\n• Connect with students facing similar challenges\n• Share your experiences anonymously\n\nYou're not alone in this journey!",
-  language: "MindMate supports multiple languages! Click the language selector (globe icon) in the top navigation to choose from English, Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, and Kannada.",
+  language: "MannoDhara supports multiple languages! Click the language selector (globe icon) in the top navigation to choose from English, Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, and Kannada.",
   area: "You can search for counselors by area! When booking an appointment, use the area filter to find counselors near you for in-person sessions.",
   anxiety: "Feeling anxious? Here's what you can do:\n1. Take the GAD-7 assessment to understand your anxiety level\n2. Try breathing exercises from Resources\n3. Practice meditation\n4. Consider booking a counselor specializing in anxiety\n5. Join peer support groups in Community",
   depression: "If you're feeling depressed:\n1. Take the PHQ-9 assessment\n2. Reach out to a counselor - you don't have to face this alone\n3. Explore mood-boosting resources\n4. Track your mood in the Journal\n5. Call 988 if you're having thoughts of self-harm",
@@ -39,7 +39,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm your MindMate assistant. I'm here to help you navigate the platform and answer your questions. How can I help you today?",
+      text: "Hi! I'm your MannoDhara assistant. I'm here to help you navigate the platform and answer your questions. How can I help you today?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -127,7 +127,7 @@ export default function ChatBot() {
                   <MessageCircle className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white">MindMate Assistant</h3>
+                  <h3 className="text-white">MannoDhara Assistant</h3>
                   <p className="text-xs text-white/80">Always here to help</p>
                 </div>
               </div>

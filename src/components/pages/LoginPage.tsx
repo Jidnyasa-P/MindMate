@@ -84,7 +84,7 @@ export default function LoginPage() {
               <Brain className="w-8 h-8 text-white" />
             </div>
             <h1 className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              MindCare
+              MannoDhara
             </h1>
           </div>
 
@@ -119,7 +119,7 @@ export default function LoginPage() {
             <CardHeader>
               <CardTitle>{isLogin ? 'Welcome Back' : 'Create Account'}</CardTitle>
               <CardDescription>
-                {isLogin ? 'Sign in to access your MindMate dashboard' : 'Join our mental wellness community'}
+                {isLogin ? 'Sign in to access your MannoDhara dashboard' : 'Join our mental wellness community'}
               </CardDescription>
             </CardHeader>
             <CardContent>

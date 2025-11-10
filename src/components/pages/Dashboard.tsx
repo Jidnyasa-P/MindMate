@@ -99,7 +99,7 @@ export default function Dashboard() {
     {
       name: "Rahul K.",
       role: "Computer Science, 3rd Year",
-      text: "MindMate helped me through my toughest semester. The counselors are understanding, and the resources are incredibly helpful.",
+      text: "MannoDhara helped me through my toughest semester. The counselors are understanding, and the resources are incredibly helpful.",
       rating: 5
     },
     {
@@ -260,7 +260,7 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                "As finals approached, my anxiety was overwhelming. I couldn't sleep and felt paralyzed. Through MindMate, I found CBT resources and scheduled weekly sessions with Dr. Patel. The habit tracker helped me build a healthy sleep routine, and the community forum showed me I wasn't alone."
+                "As finals approached, my anxiety was overwhelming. I couldn't sleep and felt paralyzed. Through MannoDhara, I found CBT resources and scheduled weekly sessions with Dr. Patel. The habit tracker helped me build a healthy sleep routine, and the community forum showed me I wasn't alone."
               </p>
               <div className="bg-white dark:bg-slate-900 rounded-lg p-4">
                 <p className="text-sm">
@@ -327,7 +327,7 @@ export default function Dashboard() {
         transition={{ delay: 0.6 }}
       >
         <div className="text-center mb-8">
-          <h2>Why Choose MindCare</h2>
+          <h2>Why Choose MannoDhara</h2>
           <p className="text-muted-foreground">What makes us different</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
