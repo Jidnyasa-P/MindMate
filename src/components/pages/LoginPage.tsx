@@ -119,7 +119,7 @@ export default function LoginPage() {
             <CardHeader>
               <CardTitle>{isLogin ? 'Welcome Back' : 'Create Account'}</CardTitle>
               <CardDescription>
-                {isLogin ? 'Sign in to access your MindCare dashboard' : 'Join our mental wellness community'}
+                {isLogin ? 'Sign in to access your MindMate dashboard' : 'Join our mental wellness community'}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -146,7 +146,7 @@ export default function LoginPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="John Doe"
+                        placeholder="Rahul Kumar"
                         required
                       />
                     </div>

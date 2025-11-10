@@ -22,6 +22,7 @@ type User = {
   institution: string;
   branch?: string;
   age?: number;
+  area?: string;
 };
 
 type AuthContextType = {
@@ -45,6 +46,8 @@ type AppState = {
   setCurrentPage: (page: string) => void;
   theme: 'light' | 'dark';
   toggleTheme: () => void;
+  language: string;
+  setLanguage: (lang: string) => void;
 };
 
 const AppStateContext = createContext<AppState | undefined>(undefined);
@@ -59,6 +62,7 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [currentPage, setCurrentPage] = useState('login');
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [language, setLanguage] = useState('en');
 
   useEffect(() => {
     // Apply theme to document
@@ -95,6 +99,8 @@ export default function App() {
     setCurrentPage,
     theme,
     toggleTheme,
+    language,
+    setLanguage,
   };
 
   const renderPage = () => {

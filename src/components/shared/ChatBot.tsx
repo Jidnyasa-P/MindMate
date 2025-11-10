@@ -13,16 +13,25 @@ type Message = {
 };
 
 const predefinedResponses: Record<string, string> = {
-  hello: "Hello! I'm here to help you navigate MindCare. How can I assist you today?",
-  help: "I can help you with:\n• Finding resources\n• Booking appointments\n• Taking self-assessments\n• Navigating the platform\n• Crisis support information",
-  appointment: "To book an appointment, go to the Appointments page from the navigation menu. You can view available counselors and their time slots there.",
-  assessment: "You can take self-assessments by clicking on the Assessments page. We offer PHQ-9, GAD-7, stress evaluation, and more.",
-  resources: "Visit the Resources page to find meditation videos, podcasts, articles, and self-care tips. Everything is organized by category for easy access.",
-  crisis: "If you're in crisis, please call 988 (Suicide & Crisis Lifeline) immediately. You can also text 'HELLO' to 741741 for the Crisis Text Line. Our counselors are also available for immediate booking.",
-  journal: "The Journal page lets you create daily entries, track your mood, and reflect on your thoughts. You can also add tags and images to your entries.",
-  habits: "Track your habits and hobbies on the Habits page. Set goals, monitor progress, and build healthy routines with visual progress tracking.",
-  community: "Join our Community Hub to connect with peers, participate in forums, and register for webinars and workshops.",
-  default: "I understand you're looking for help. Could you please rephrase your question? You can ask me about appointments, resources, assessments, or any other feature of MindCare."
+  hello: "Hello! I'm here to help you navigate MindMate. How can I assist you today?",
+  hi: "Hi there! Welcome to MindMate. I'm your virtual assistant. How can I help you?",
+  help: "I can help you with:\n• Finding resources\n• Booking appointments with counselors\n• Taking self-assessments (PHQ-9, GAD-7, Stress tests)\n• Navigating the platform\n• Crisis support information\n• Journaling and mood tracking\n• Joining community discussions",
+  appointment: "To book an appointment:\n1. Go to the Appointments page\n2. Browse counselors by specialization and area\n3. Select a counselor\n4. Choose your preferred date and time\n5. Enter your reason for the appointment\n6. Confirm booking\n\nYou'll receive a confirmation notification!",
+  counselor: "Our counselors specialize in various areas including anxiety, depression, stress management, and academic pressure. You can filter counselors by area and specialization to find the best match for you.",
+  assessment: "You can take confidential self-assessments:\n• PHQ-9 - Depression screening\n• GAD-7 - Anxiety assessment\n• Stress Level Test\n• Sleep Quality Assessment\n• Burnout Evaluation\n\nBased on your results, I'll recommend appropriate resources or suggest booking a counselor.",
+  resources: "Visit the Resources page to find:\n• Meditation & Yoga videos\n• Relaxation podcasts\n• Mental health articles\n• Educational videos\n• Screen time management tools\n• Self-care tips\n\nAll resources are categorized for easy access!",
+  crisis: "🚨 If you're in crisis:\n• Call 988 (Suicide & Crisis Lifeline) - 24/7\n• Text 'HELLO' to 741741 (Crisis Text Line)\n• Call 911 for emergencies\n• Book an immediate appointment with our counselors\n\nYou're not alone - help is available.",
+  journal: "The Journal page lets you:\n• Create daily entries with titles and content\n• Track your mood (happy, sad, anxious, calm, neutral)\n• Add tags to categorize entries\n• View mood trends on a chart\n• Switch between list and calendar views\n\nIt's a great way to reflect on your mental health journey!",
+  habits: "Build healthy habits with our Habit Tracker:\n• Create custom habits with icons\n• Set daily/weekly targets\n• Track progress with visual rings\n• Monitor your streaks\n• Get motivational messages\n\nSmall steps lead to big changes!",
+  community: "Join our Community Hub to:\n• Post in the peer support forum\n• Comment and like posts\n• Register for webinars and workshops\n• Connect with students facing similar challenges\n• Share your experiences anonymously\n\nYou're not alone in this journey!",
+  language: "MindMate supports multiple languages! Click the language selector (globe icon) in the top navigation to choose from English, Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, and Kannada.",
+  area: "You can search for counselors by area! When booking an appointment, use the area filter to find counselors near you for in-person sessions.",
+  anxiety: "Feeling anxious? Here's what you can do:\n1. Take the GAD-7 assessment to understand your anxiety level\n2. Try breathing exercises from Resources\n3. Practice meditation\n4. Consider booking a counselor specializing in anxiety\n5. Join peer support groups in Community",
+  depression: "If you're feeling depressed:\n1. Take the PHQ-9 assessment\n2. Reach out to a counselor - you don't have to face this alone\n3. Explore mood-boosting resources\n4. Track your mood in the Journal\n5. Call 988 if you're having thoughts of self-harm",
+  stress: "Managing stress:\n1. Take our Stress Assessment\n2. Try the Pomodoro technique for studying\n3. Practice regular meditation\n4. Build healthy habits (sleep, exercise)\n5. Talk to a counselor about stress management techniques",
+  exam: "Exam anxiety is common! Try:\n• Breaking study sessions into chunks\n• Using our meditation resources\n• Tracking study habits\n• Talking to counselors about anxiety management\n• Joining study-related discussions in Community",
+  sleep: "For better sleep:\n• Maintain a consistent sleep schedule\n• Take our Sleep Quality Assessment\n• Avoid screens before bed\n• Try our guided sleep meditations\n• Track sleep patterns in Habits",
+  default: "I'm here to help! You can ask me about:\n• Booking appointments\n• Self-assessments\n• Resources\n• Journal & mood tracking\n• Habits\n• Community\n• Crisis support\n\nWhat would you like to know more about?"
 };
 
 export default function ChatBot() {
@@ -30,7 +39,7 @@ export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi! I'm your MindCare assistant. I'm here to help you navigate the platform and answer your questions. How can I help you today?",
+      text: "Hi! I'm your MindMate assistant. I'm here to help you navigate the platform and answer your questions. How can I help you today?",
       sender: 'bot',
       timestamp: new Date()
     }
@@ -49,19 +58,24 @@ export default function ChatBot() {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    const currentInput = inputValue;
     setInputValue('');
     setIsTyping(true);
 
-    // Simulate bot response
+    // Simulate bot response with better matching
     setTimeout(() => {
-      const lowerInput = inputValue.toLowerCase();
+      const lowerInput = currentInput.toLowerCase();
       let response = predefinedResponses.default;
 
-      for (const [key, value] of Object.entries(predefinedResponses)) {
-        if (lowerInput.includes(key)) {
-          response = value;
-          break;
-        }
+      // Check for multiple keywords
+      const keywords = Object.keys(predefinedResponses);
+      const matchedKeywords = keywords.filter(key => lowerInput.includes(key));
+
+      if (matchedKeywords.length > 0) {
+        // Use the first matched keyword
+        response = predefinedResponses[matchedKeywords[0]];
+      } else if (lowerInput.includes('how') || lowerInput.includes('what') || lowerInput.includes('where')) {
+        response = predefinedResponses.help;
       }
 
       const botMessage: Message = {
@@ -73,7 +87,7 @@ export default function ChatBot() {
 
       setMessages(prev => [...prev, botMessage]);
       setIsTyping(false);
-    }, 1000 + Math.random() * 1000);
+    }, 800 + Math.random() * 700);
   };
 
   return (
@@ -113,7 +127,7 @@ export default function ChatBot() {
                   <MessageCircle className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white">MindCare Assistant</h3>
+                  <h3 className="text-white">MindMate Assistant</h3>
                   <p className="text-xs text-white/80">Always here to help</p>
                 </div>
               </div>
@@ -128,7 +142,7 @@ export default function ChatBot() {
             </div>
 
             {/* Messages */}
-            <ScrollArea className="flex-1 p-4">
+            <div className="flex-1 overflow-y-auto p-4" style={{ maxHeight: '380px' }}>
               <div className="space-y-4">
                 {messages.map((message) => (
                   <motion.div
@@ -163,7 +177,7 @@ export default function ChatBot() {
                   </motion.div>
                 )}
               </div>
-            </ScrollArea>
+            </div>
 
             {/* Input */}
             <div className="p-4 border-t border-border">

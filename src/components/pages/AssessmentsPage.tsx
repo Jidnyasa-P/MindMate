@@ -549,6 +549,55 @@ export default function AssessmentsPage() {
                 </ul>
               </div>
 
+              {/* Recommended Resources */}
+              <div>
+                <h3 className="mb-4">Recommended Resources</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {result.severity === 'minimal' && (
+                    <>
+                      <Button variant="outline" onClick={() => setCurrentPage('resources')} className="justify-start">
+                        <span>📚</span> Self-Care Tips
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('habits')} className="justify-start">
+                        <span>🎯</span> Habit Tracker
+                      </Button>
+                    </>
+                  )}
+                  {result.severity === 'mild' && (
+                    <>
+                      <Button variant="outline" onClick={() => setCurrentPage('resources')} className="justify-start">
+                        <span>🧘</span> Meditation & Yoga
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('journal')} className="justify-start">
+                        <span>📝</span> Mood Journal
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('resources')} className="justify-start">
+                        <span>🎧</span> Relaxation Audio
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('community')} className="justify-start">
+                        <span>👥</span> Support Forums
+                      </Button>
+                    </>
+                  )}
+                  {(result.severity === 'moderate' || result.severity === 'severe') && (
+                    <>
+                      <Button variant="outline" onClick={() => setCurrentPage('appointments')} className="justify-start">
+                        <span>👨‍⚕️</span> Book Counselor
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('resources')} className="justify-start">
+                        <span>📖</span> CBT Articles
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('community')} className="justify-start">
+                        <span>🎓</span> Mental Health Webinars
+                      </Button>
+                      <Button variant="outline" onClick={() => setCurrentPage('resources')} className="justify-start">
+                        <span>🧘</span> Guided Meditation
+                      </Button>
+                    </>
+                  )}
+                </div>
+              </div>
+
               {result.severity === 'severe' && (
                 <Alert className="bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800">
                   <Phone className="w-4 h-4 text-red-600 dark:text-red-400" />

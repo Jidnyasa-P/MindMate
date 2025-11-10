@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="mb-4">About MindCare</h3>
+            <h3 className="mb-4">About MindMate</h3>
             <p className="text-sm text-muted-foreground mb-4">
               A comprehensive mental health support platform designed specifically for university students, providing accessible and confidential resources.
             </p>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} MindCare. All rights reserved. | University Mental Health Initiative</p>
+          <p>© {currentYear} MindMate. All rights reserved. | University Mental Health Initiative</p>
           <p className="mt-2">
             <span className="text-destructive">Crisis Hotline:</span> Available 24/7 at 988
           </p>

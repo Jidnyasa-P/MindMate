@@ -43,18 +43,19 @@ type Event = {
 
 export default function CommunityHub() {
   const { user } = useAuth();
+  const [flaggedPosts, setFlaggedPosts] = useState<Set<string>>(new Set());
   const [posts, setPosts] = useState<Post[]>([
     {
       id: '1',
-      author: 'Alex M.',
-      authorInitials: 'AM',
+      author: 'Rahul K.',
+      authorInitials: 'RK',
       content: 'Just finished my first counseling session and I feel so much better. If you\'re hesitating, please reach out for help. It really makes a difference!',
       timestamp: new Date(2024, 10, 3, 14, 30),
       likes: 24,
       comments: [
         {
           id: '1',
-          author: 'Sarah J.',
+          author: 'Ananya R.',
           content: 'So proud of you for taking that step! 💙',
           timestamp: new Date(2024, 10, 3, 15, 0)
         }
@@ -71,13 +72,13 @@ export default function CommunityHub() {
       comments: [
         {
           id: '1',
-          author: 'Michael C.',
+          author: 'Arjun M.',
           content: 'Try the breathing exercises in the Resources section. They help me a lot!',
           timestamp: new Date(2024, 10, 4, 10, 45)
         },
         {
           id: '2',
-          author: 'Emma R.',
+          author: 'Sneha T.',
           content: 'Breaking study sessions into smaller chunks with the Pomodoro technique works for me.',
           timestamp: new Date(2024, 10, 4, 11, 0)
         }
@@ -90,7 +91,7 @@ export default function CommunityHub() {
     {
       id: '1',
       title: 'Stress Management Workshop',
-      presenter: 'Dr. Sarah Johnson',
+      presenter: 'Dr. Priya Sharma',
       date: new Date(2024, 10, 15),
       time: '2:00 PM - 3:30 PM',
       type: 'workshop',
@@ -100,7 +101,7 @@ export default function CommunityHub() {
     {
       id: '2',
       title: 'Mindfulness and Meditation Basics',
-      presenter: 'Emma Rodriguez',
+      presenter: 'Ananya Reddy',
       date: new Date(2024, 10, 18),
       time: '6:00 PM - 7:00 PM',
       type: 'webinar',
@@ -110,11 +111,81 @@ export default function CommunityHub() {
     {
       id: '3',
       title: 'Building Healthy Sleep Habits',
-      presenter: 'Dr. Michael Chen',
+      presenter: 'Dr. Arjun Patel',
       date: new Date(2024, 10, 20),
       time: '3:00 PM - 4:30 PM',
       type: 'workshop',
       description: 'Practical strategies for improving sleep quality and establishing consistent sleep schedules.',
+      registered: false
+    },
+    {
+      id: '4',
+      title: 'Overcoming Exam Anxiety',
+      presenter: 'Dr. Priya Sharma',
+      date: new Date(2024, 10, 22),
+      time: '4:00 PM - 5:30 PM',
+      type: 'webinar',
+      description: 'Learn proven strategies to manage exam stress and perform better under pressure.',
+      registered: false
+    },
+    {
+      id: '5',
+      title: 'Cognitive Behavioral Therapy Introduction',
+      presenter: 'Dr. Vikram Singh',
+      date: new Date(2024, 10, 25),
+      time: '5:00 PM - 6:30 PM',
+      type: 'webinar',
+      description: 'Understanding CBT principles and how to apply them in daily life for better mental health.',
+      registered: false
+    },
+    {
+      id: '6',
+      title: 'Time Management for Students',
+      presenter: 'Ananya Reddy',
+      date: new Date(2024, 10, 27),
+      time: '3:00 PM - 4:00 PM',
+      type: 'workshop',
+      description: 'Practical time management techniques to balance academics, social life, and self-care.',
+      registered: false
+    },
+    {
+      id: '7',
+      title: 'Understanding Depression and Seeking Help',
+      presenter: 'Dr. Arjun Patel',
+      date: new Date(2024, 10, 28),
+      time: '6:00 PM - 7:30 PM',
+      type: 'webinar',
+      description: 'Recognizing signs of depression, breaking stigma, and knowing when to seek professional help.',
+      registered: false
+    },
+    {
+      id: '8',
+      title: 'Building Resilience Workshop',
+      presenter: 'Neha Kapoor',
+      date: new Date(2024, 10, 30),
+      time: '2:00 PM - 4:00 PM',
+      type: 'workshop',
+      description: 'Develop resilience skills to bounce back from setbacks and thrive during challenges.',
+      registered: false
+    },
+    {
+      id: '9',
+      title: 'Social Anxiety and Building Connections',
+      presenter: 'Dr. Ravi Kumar',
+      date: new Date(2024, 11, 2),
+      time: '5:00 PM - 6:30 PM',
+      type: 'webinar',
+      description: 'Understanding social anxiety and learning practical strategies to build meaningful connections.',
+      registered: false
+    },
+    {
+      id: '10',
+      title: 'Self-Compassion and Mental Wellness',
+      presenter: 'Kavya Menon',
+      date: new Date(2024, 11, 5),
+      time: '4:00 PM - 5:30 PM',
+      type: 'workshop',
+      description: 'Learn to be kinder to yourself and develop self-compassion practices for better mental health.',
       registered: false
     }
   ]);
@@ -176,6 +247,20 @@ export default function CommunityHub() {
       e.id === eventId ? { ...e, registered: !e.registered } : e
     ));
     toast.success('Registration updated!');
+  };
+
+  const toggleFlag = (postId: string) => {
+    setFlaggedPosts(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(postId)) {
+        newSet.delete(postId);
+        toast.success('Flag removed');
+      } else {
+        newSet.add(postId);
+        toast.success('Post flagged for review');
+      }
+      return newSet;
+    });
   };
 
   const filteredPosts = posts.filter(post =>
@@ -254,8 +339,12 @@ export default function CommunityHub() {
                               {post.timestamp.toLocaleDateString()} at {post.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </p>
                           </div>
-                          <Button variant="ghost" size="icon">
-                            <Flag className="w-4 h-4" />
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            onClick={() => toggleFlag(post.id)}
+                          >
+                            <Flag className={`w-4 h-4 ${flaggedPosts.has(post.id) ? 'text-red-500 fill-red-500' : ''}`} />
                           </Button>
                         </div>
                         <p className="mb-4">{post.content}</p>

@@ -76,19 +76,19 @@ export default function Dashboard() {
 
   const teamMembers = [
     {
-      name: "Dr. Sarah Johnson",
+      name: "Dr. Priya Sharma",
       role: "Clinical Psychologist & Platform Director",
       bio: "15+ years experience in university mental health with focus on student wellness and digital therapeutics.",
       image: "https://images.unsplash.com/photo-1740153204804-200310378f2f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3Vuc2Vsb3IlMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NjIyNTA1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
-      name: "Dr. Michael Chen",
+      name: "Dr. Arjun Patel",
       role: "Counseling Services Lead",
       bio: "Specializes in anxiety, depression, and stress management for young adults. Licensed therapist and educator.",
       image: "https://images.unsplash.com/photo-1729824186959-ba83cbd1978d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHVkZW50JTIwc3R1ZHlpbmclMjBoYXBweXxlbnwxfHx8fDE3NjIyMDQ2OTN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
-      name: "Emma Rodriguez",
+      name: "Ananya Reddy",
       role: "Peer Support Coordinator",
       bio: "Recent graduate who champions mental health awareness. Manages community programs and student engagement.",
       image: "https://images.unsplash.com/photo-1690264460165-0ff5e1063d86?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwY29sbGFib3JhdGlvbiUyMG9mZmljZXxlbnwxfHx8fDE3NjIyMTIzMDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
@@ -97,9 +97,9 @@ export default function Dashboard() {
 
   const testimonials = [
     {
-      name: "Alex M.",
+      name: "Rahul K.",
       role: "Computer Science, 3rd Year",
-      text: "MindCare helped me through my toughest semester. The counselors are understanding, and the resources are incredibly helpful.",
+      text: "MindMate helped me through my toughest semester. The counselors are understanding, and the resources are incredibly helpful.",
       rating: 5
     },
     {
@@ -109,7 +109,7 @@ export default function Dashboard() {
       rating: 5
     },
     {
-      name: "James L.",
+      name: "Arjun M.",
       role: "Engineering, 4th Year",
       text: "The community forum is amazing. It's comforting to know others are going through similar challenges. Highly recommend!",
       rating: 5
@@ -256,15 +256,15 @@ export default function Dashboard() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 border-blue-200 dark:border-blue-800">
             <CardHeader>
-              <CardTitle>Sarah's Journey with Exam Anxiety</CardTitle>
+              <CardTitle>Sneha's Journey with Exam Anxiety</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                "As finals approached, my anxiety was overwhelming. I couldn't sleep and felt paralyzed. Through MindCare, I found CBT resources and scheduled weekly sessions with Dr. Chen. The habit tracker helped me build a healthy sleep routine, and the community forum showed me I wasn't alone."
+                "As finals approached, my anxiety was overwhelming. I couldn't sleep and felt paralyzed. Through MindMate, I found CBT resources and scheduled weekly sessions with Dr. Patel. The habit tracker helped me build a healthy sleep routine, and the community forum showed me I wasn't alone."
               </p>
               <div className="bg-white dark:bg-slate-900 rounded-lg p-4">
                 <p className="text-sm">
-                  <span className="text-primary">Outcome:</span> Sarah completed her exams, maintained a healthy routine, and continues using the platform for preventive care.
+                  <span className="text-primary">Outcome:</span> Sneha completed her exams, maintained a healthy routine, and continues using the platform for preventive care.
                 </p>
               </div>
             </CardContent>
@@ -272,15 +272,15 @@ export default function Dashboard() {
 
           <Card className="shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 border-purple-200 dark:border-purple-800">
             <CardHeader>
-              <CardTitle>Marcus Overcomes Isolation</CardTitle>
+              <CardTitle>Rohan Overcomes Isolation</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                "Being an international student, I felt isolated and homesick. I didn't know where to turn. The AI chatbot guided me to resources on managing homesickness, and I joined a peer support workshop. Meeting others who understood my experience changed everything."
+                "Moving to a new city for college, I felt isolated and homesick. I didn't know where to turn. The AI chatbot guided me to resources on managing homesickness, and I joined a peer support workshop. Meeting others who understood my experience changed everything."
               </p>
               <div className="bg-white dark:bg-slate-900 rounded-lg p-4">
                 <p className="text-sm">
-                  <span className="text-primary">Outcome:</span> Marcus built a support network, became a community moderator, and now mentors other international students.
+                  <span className="text-primary">Outcome:</span> Rohan built a support network, became a community moderator, and now mentors other students.
                 </p>
               </div>
             </CardContent>
@@ -457,16 +457,14 @@ export default function Dashboard() {
               <Button
                 onClick={() => setCurrentPage('appointments')}
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10"
+                className="bg-white text-indigo-600 hover:bg-gray-100"
               >
                 Book Appointment
               </Button>
               <Button
                 onClick={() => setCurrentPage('assessments')}
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10"
+                className="bg-white text-indigo-600 hover:bg-gray-100"
               >
                 Take Assessment
               </Button>

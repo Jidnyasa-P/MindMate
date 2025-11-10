@@ -101,6 +101,7 @@
     --color-green-400: oklch(.792 .209 151.711);
     --color-green-500: oklch(.723 .219 149.579);
     --color-green-600: oklch(.627 .194 149.214);
+    --color-green-700: oklch(.527 .154 150.069);
     --color-green-800: oklch(.448 .119 151.328);
     --color-green-900: oklch(.393 .095 152.535);
     --color-green-950: oklch(.266 .065 152.934);
@@ -746,6 +747,10 @@
     margin-left: calc(var(--spacing) * -4);
   }
 
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
+
   .ml-3 {
     margin-left: calc(var(--spacing) * 3);
   }
@@ -852,10 +857,6 @@
     height: calc(var(--spacing) * 2);
   }
 
-  .h-2\.5 {
-    height: calc(var(--spacing) * 2.5);
-  }
-
   .h-3 {
     height: calc(var(--spacing) * 3);
   }
@@ -936,6 +937,10 @@
     max-height: 80vh;
   }
 
+  .max-h-\[90vh\] {
+    max-height: 90vh;
+  }
+
   .min-h-4 {
     min-height: calc(var(--spacing) * 4);
   }
@@ -946,10 +951,6 @@
 
   .min-h-screen {
     min-height: 100vh;
-  }
-
-  .w-2\.5 {
-    width: calc(var(--spacing) * 2.5);
   }
 
   .w-3 {
@@ -994,6 +995,10 @@
 
   .w-96 {
     width: calc(var(--spacing) * 96);
+  }
+
+  .w-\[120px\] {
+    width: 120px;
   }
 
   .w-fit {
@@ -1121,10 +1126,6 @@
 
   .cursor-pointer {
     cursor: pointer;
-  }
-
-  .touch-none {
-    touch-action: none;
   }
 
   .resize-none {
@@ -1327,10 +1328,6 @@
     border-radius: var(--radius-2xl);
   }
 
-  .rounded-\[inherit\] {
-    border-radius: inherit;
-  }
-
   .rounded-full {
     border-radius: 3.40282e38px;
   }
@@ -1441,18 +1438,6 @@
     border-color: #0000;
   }
 
-  .border-white {
-    border-color: var(--color-white);
-  }
-
-  .border-t-transparent {
-    border-top-color: #0000;
-  }
-
-  .border-l-transparent {
-    border-left-color: #0000;
-  }
-
   .bg-accent {
     background-color: var(--accent);
   }
@@ -1493,6 +1478,10 @@
 
   .bg-green-50 {
     background-color: var(--color-green-50);
+  }
+
+  .bg-green-600 {
+    background-color: var(--color-green-600);
   }
 
   .bg-indigo-50 {
@@ -1739,10 +1728,6 @@
 
   .p-\[3px\] {
     padding: 3px;
-  }
-
-  .p-px {
-    padding: 1px;
   }
 
   .px-2 {
@@ -2347,6 +2332,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-green-700:hover {
+      background-color: var(--color-green-700);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-muted:hover {
       background-color: var(--muted);
     }
@@ -2390,18 +2381,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:bg-secondary\/80:hover {
         background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
-      }
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-white\/10:hover {
-      background-color: #ffffff1a;
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-white\/10:hover {
-        background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
       }
     }
   }
