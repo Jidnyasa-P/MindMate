@@ -6,6 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { CheckCircle2, XCircle, Users, TrendingUp, Heart, Shield, Brain, Clock, Lock, Sparkles, Target, MessageCircle } from 'lucide-react';
 import { useAuth, useAppState } from '../../App';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import welcomeimg from '../../assets/welcomeimg.jpeg';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -40,7 +41,7 @@ export default function Dashboard() {
     {
       title: `Welcome back, ${user?.name}!`,
       description: "Your mental wellness journey continues today. Take a moment to check in with yourself.",
-      image: "https://images.unsplash.com/photo-1606733572375-35620adc4a18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpdGF0aW9uJTIwcGVhY2VmdWwlMjBuYXR1cmV8ZW58MXx8fHwxNzYyMTk3NDg4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      image: welcomeimg,
       cta: "Start Journal Entry"
     },
     {

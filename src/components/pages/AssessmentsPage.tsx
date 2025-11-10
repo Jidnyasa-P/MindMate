@@ -8,6 +8,7 @@ import { Label } from '../ui/label';
 import { Alert, AlertDescription } from '../ui/alert';
 import { AlertTriangle, CheckCircle, Info, Calendar, Phone } from 'lucide-react';
 import { useAppState } from '../../App';
+import { Badge } from '../ui/badge';
 
 type Assessment = {
   id: string;
