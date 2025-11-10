@@ -56,7 +56,7 @@ export default function Navbar() {
             className="flex-shrink-0 flex items-center gap-2 md:gap-3 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => handleNavigation('dashboard')}
           >
-            <img src={logo} alt="MannoDhara Logo" className="h-10 w-10 object-cover rounded" />
+            <img src={logo} alt="MannoDhara Logo" className="h-10 w-10 object-contain rounded" />
             <div className="hidden sm:block">
               <h1 className="text-lg md:text-2xl font-bold bg-gradient-to-r from-green-600 via-blue-500 to-purple-600 bg-clip-text text-transparent">
                 MannoDhara
