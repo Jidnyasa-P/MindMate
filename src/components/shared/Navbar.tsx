@@ -1,17 +1,17 @@
-import { Home, BookOpen, Users, BarChart3, User, LogOut, Menu, Moon, Sun, Globe, ChevronDown, Calendar, Target, FileText, Activity, Sparkles } from 'lucide-react';
+import { Home, BookOpen, Users, BarChart3, User, LogOut, Menu, Moon, Sun, Globe, ChevronDown, Calendar, Target, FileText, Activity } from 'lucide-react';
 import { useAuth, useAppState } from '../../App';
 import { Button } from '../ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import logo from '../../assets/mannodhara_logo.jpg';
+import logo from '../../assets/mannodhara_logo.png';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { currentPage, setCurrentPage, theme, toggleTheme, language, setLanguage } = useAppState();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isWellnessDropdownOpen, setIsWellnessDropdownOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // NEW: user dropdown state
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const languages = [
     { code: 'en', name: 'English' },
@@ -49,19 +49,28 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16 md:h-20">
           
-         {/* Logo */}
-<div className="flex-shrink-0 flex items-center space-x-2">
-  <img
-    src={logo}
-    alt="MannoDhara Logo"
-    className="h-14 w-14 object-contain rounded-full"
-  />
-  <span className="text-xl font-bold bg-gradient-to-r from-teal-500 to-blue-500 bg-clip-text text-transparent">
-    MannoDhara
-  </span>
-</div>
+          {/* Logo and Brand Name */}
+          <div 
+            className="flex-shrink-0 flex items-center gap-2 md:gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={() => handleNavigation('dashboard')}
+          >
+            <img src={logo} alt="MannoDhara Logo" className="h-10 w-10 object-cover rounded" />
+            <div className="hidden sm:block">
+              <h1 className="text-lg md:text-2xl font-bold bg-gradient-to-r from-green-600 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                MannoDhara
+              </h1>
+              <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">
+                Mental Health Support
+              </p>
+            </div>
+            <div className="sm:hidden">
+              <h1 className="text-base font-bold bg-gradient-to-r from-green-600 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                MannoDhara
+              </h1>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
@@ -71,40 +80,40 @@ export default function Navbar() {
               return (
                 <Button
                   key={item.id}
-                  variant={isActive ? "default" : "ghost"}
+                  variant={isActive ? 'default' : 'ghost'}
                   onClick={() => handleNavigation(item.id)}
-                  className="relative"
+                  className="relative text-sm lg:text-base"
                 >
                   <Icon className="mr-2 h-4 w-4" />
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute inset-0 bg-teal-100 dark:bg-teal-900 rounded-md -z-10"
+                      className="absolute inset-0 bg-green-100 dark:bg-green-900 rounded-md -z-10"
                       initial={false}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                     />
                   )}
                 </Button>
               );
             })}
 
-            {/* Wellness Hub Dropdown - Desktop */}
+            {/* Wellness Hub Dropdown */}
             <div className="relative">
               <Button
-                variant={isWellnessActive ? "default" : "ghost"}
+                variant={isWellnessActive ? 'default' : 'ghost'}
                 onClick={() => setIsWellnessDropdownOpen(!isWellnessDropdownOpen)}
-                className="relative"
+                className="relative text-sm lg:text-base"
               >
-                <Sparkles className="mr-2 h-4 w-4" />
+                <Activity className="mr-2 h-4 w-4" />
                 Wellness Hub
                 <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${isWellnessDropdownOpen ? 'rotate-180' : ''}`} />
                 {isWellnessActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute inset-0 bg-teal-100 dark:bg-teal-900 rounded-md -z-10"
+                    className="absolute inset-0 bg-green-100 dark:bg-green-900 rounded-md -z-10"
                     initial={false}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
                 )}
               </Button>
@@ -125,8 +134,8 @@ export default function Navbar() {
                         <button
                           key={item.id}
                           onClick={() => handleNavigation(item.id)}
-                          className={`w-full text-left px-4 py-2 flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
-                            isActive ? 'bg-teal-50 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400' : 'text-gray-700 dark:text-gray-300'
+                          className={`w-full text-left px-4 py-2 flex items-center hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-sm ${
+                            isActive ? 'bg-green-50 dark:bg-green-900/50 text-green-600 dark:text-green-400' : 'text-gray-700 dark:text-gray-300'
                           }`}
                         >
                           <Icon className="mr-3 h-4 w-4" />
@@ -141,12 +150,12 @@ export default function Navbar() {
           </div>
 
           {/* Right Actions - Desktop */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {/* Language Selector */}
             <Select value={language} onValueChange={setLanguage}>
-              <SelectTrigger className="w-32">
-                <Globe className="mr-2 h-4 w-4" />
-                <SelectValue />
+              <SelectTrigger className="w-24 h-9 text-xs">
+                <Globe className="h-4 w-4 mr-1" />
+                <SelectValue placeholder="Language" />
               </SelectTrigger>
               <SelectContent>
                 {languages.map((lang) => (
@@ -158,80 +167,84 @@ export default function Navbar() {
             </Select>
 
             {/* Theme Toggle */}
-            <Button variant="ghost" size="icon" onClick={toggleTheme}>
-              {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="h-9 w-9 lg:h-10 lg:w-10">
+              <Sun className="h-5 w-5 dark:hidden" />
+              <Moon className="h-5 w-5 hidden dark:block" />
             </Button>
 
-          {/* User Menu with Dropdown */}
-{/* NOTE: parent wrapper has overflow-visible to prevent clipping */}
-<div className="relative flex items-center space-x-2 border-l pl-3 ml-3 overflow-visible">
-  <div className="text-right hidden lg:block">
-    <p className="text-sm font-medium">{user?.name}</p>
-    <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
-  </div>
+            {/* User Menu - FIXED WITH PORTAL-LIKE POSITIONING */}
+            <div className="border-l pl-2 lg:pl-3 ml-2 lg:ml-3 flex items-center">
+              <div className="text-right hidden lg:block">
+                <p className="text-sm font-medium text-gray-900 dark:text-white">{user?.name || 'Guest'}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{user?.role || 'user'}</p>
+              </div>
 
-  {/* Dropdown Toggle */}
-  <Button
-    variant="ghost"
-    size="icon"
-    onClick={() => setIsUserMenuOpen(prev => !prev)}
-    className="flex items-center space-x-1"
-    aria-haspopup="true"
-    aria-expanded={isUserMenuOpen}
-  >
-    <User className="h-5 w-5" />
-    <ChevronDown
-      className={`h-4 w-4 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`}
-    />
-  </Button>
+              {/* User Icon Button */}
+              <div className="relative inline-block">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="h-9 w-9 lg:h-10 lg:w-10"
+                  aria-haspopup="true"
+                  aria-expanded={isUserMenuOpen}
+                >
+                  <User className="h-5 w-5" />
+                </Button>
 
-  {/* Dropdown Menu */}
-  <AnimatePresence>
-    {isUserMenuOpen && (
-      <motion.div
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -6 }}
-        transition={{ duration: 0.12 }}
-        // Use top-full + mt-2 so dropdown is positioned just below the toggle
-        className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50"
-        role="menu"
-      >
-        <button
-          onClick={() => { handleNavigation('profile'); setIsUserMenuOpen(false); }}
-          className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-          role="menuitem"
-        >
-          Profile
-        </button>
+                {/* User Dropdown Menu - FIXED POSITIONING */}
+                {isUserMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.15 }}
+                    className="fixed right-4 top-16 w-44 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 py-1 z-[9999]"
+                  >
+                    <button
+                      onClick={() => { handleNavigation('profile'); setIsUserMenuOpen(false); }}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors first:rounded-t-lg"
+                      role="menuitem"
+                    >
+                      Profile
+                    </button>
+                    <button
+                      onClick={() => { handleNavigation('settings'); setIsUserMenuOpen(false); }}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      role="menuitem"
+                    >
+                      Settings
+                    </button>
+                    <button
+                      onClick={() => { logout(); setIsUserMenuOpen(false); }}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors last:rounded-b-lg"
+                      role="menuitem"
+                    >
+                      Logout
+                    </button>
+                  </motion.div>
+                )}
+              </div>
 
-        <button
-          onClick={() => { handleNavigation('settings'); setIsUserMenuOpen(false); }}
-          className="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-          role="menuitem"
-        >
-          Settings
-        </button>
-
-        <button
-          onClick={() => { logout(); setIsUserMenuOpen(false); }}
-          className="w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30"
-          role="menuitem"
-        >
-          Logout
-        </button>
-      </motion.div>
-    )}
-  </AnimatePresence>
-</div>
-</div>
+              {/* Quick Logout Icon */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={logout}
+                className="h-9 w-9 lg:h-10 lg:w-10 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
+              >
+                <LogOut className="h-5 w-5" />
+              </Button>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
+            <Button 
+              variant="ghost" 
+              size="icon" 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="h-9 w-9"
             >
               <Menu className="h-6 w-6" />
             </Button>
@@ -244,10 +257,10 @@ export default function Navbar() {
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 max-h-96 overflow-y-auto"
           >
             <div className="px-4 py-4 space-y-2">
               {/* Main Nav Items - Mobile */}
@@ -257,9 +270,9 @@ export default function Navbar() {
                 return (
                   <Button
                     key={item.id}
-                    variant={isActive ? "default" : "ghost"}
+                    variant={isActive ? 'default' : 'ghost'}
                     onClick={() => handleNavigation(item.id)}
-                    className="w-full justify-start"
+                    className="w-full justify-start text-sm"
                   >
                     <Icon className="mr-3 h-5 w-5" />
                     {item.label}
@@ -268,7 +281,7 @@ export default function Navbar() {
               })}
 
               {/* Wellness Hub Section - Mobile */}
-              <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
+              <div className="pt-3 pb-2 border-t border-gray-200 dark:border-gray-700">
                 <p className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   Wellness Hub
                 </p>
@@ -278,9 +291,9 @@ export default function Navbar() {
                   return (
                     <Button
                       key={item.id}
-                      variant={isActive ? "default" : "ghost"}
+                      variant={isActive ? 'default' : 'ghost'}
                       onClick={() => handleNavigation(item.id)}
-                      className="w-full justify-start"
+                      className="w-full justify-start text-sm"
                     >
                       <Icon className="mr-3 h-5 w-5" />
                       {item.label}
@@ -289,21 +302,14 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* User Actions - Mobile */}
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
-                <div className="flex items-center space-x-3 px-3 py-2">
-                  <User className="h-8 w-8 text-gray-400" />
-                  <div>
-                    <p className="text-sm font-medium">{user?.name}</p>
-                    <p className="text-xs text-gray-500 capitalize">{user?.role}</p>
-                  </div>
-                </div>
-
-                {/* Language Selector - Mobile */}
+              {/* Language Section - Mobile */}
+              <div className="pt-3 pb-2 border-t border-gray-200 dark:border-gray-700">
+                <p className="px-3 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                  Language
+                </p>
                 <Select value={language} onValueChange={setLanguage}>
                   <SelectTrigger className="w-full">
-                    <Globe className="mr-2 h-4 w-4" />
-                    <SelectValue />
+                    <SelectValue placeholder="Select Language" />
                   </SelectTrigger>
                   <SelectContent>
                     {languages.map((lang) => (
@@ -313,15 +319,35 @@ export default function Navbar() {
                     ))}
                   </SelectContent>
                 </Select>
+              </div>
+
+              {/* User Actions - Mobile */}
+              <div className="pt-3 border-t border-gray-200 dark:border-gray-700 space-y-2">
+                <div className="flex items-center space-x-3 px-3 py-2">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                    <User className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900 dark:text-white">{user?.name || 'Guest'}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">{user?.role || 'user'}</p>
+                  </div>
+                </div>
 
                 {/* Theme Toggle - Mobile */}
-                <Button variant="outline" className="w-full justify-start" onClick={toggleTheme}>
-                  {theme === 'light' ? <Moon className="mr-3 h-5 w-5" /> : <Sun className="mr-3 h-5 w-5" />}
-                  {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+                <Button variant="outline" className="w-full justify-start text-sm" size="sm" onClick={toggleTheme}>
+                  <Sun className="mr-3 h-5 w-5 dark:hidden" />
+                  <Moon className="mr-3 h-5 w-5 hidden dark:block" />
+                  <span className="dark:hidden">Light Mode</span>
+                  <span className="hidden dark:block">Dark Mode</span>
                 </Button>
 
                 {/* Logout - Mobile */}
-                <Button variant="outline" className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20" onClick={logout}>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20 text-sm"
+                  size="sm"
+                  onClick={logout}
+                >
                   <LogOut className="mr-3 h-5 w-5" />
                   Logout
                 </Button>

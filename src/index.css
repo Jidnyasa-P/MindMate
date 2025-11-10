@@ -2031,7 +2031,8 @@
   }
 
   .text-transparent {
-    color: #0000;
+    color: black;
+    font-weight: bold;
   }
 
   .text-white {
